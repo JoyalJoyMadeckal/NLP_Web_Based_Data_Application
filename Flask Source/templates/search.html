@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div id="main" style='height: auto'>
+	<div id="content" style='height: auto'>
+		<div class="box" style='height: auto'>
+			<div class="cl">&nbsp;</div>
+			{% if search_results %}
+			<h1 style="color: #1da9d7;padding-top: 9px; padding-bottom: 20px;"> Found {{count}} matching advertisements with "{{searchText}}" </h1>
+			<h3 style="color: black; padding-bottom: 14px;"> (Display maximum 10 results) </h3>
+			<div class="posts">
+				{% for job_ad in search_results %}
+				<div class="post-subpage">
+					<div class="image" style='height: auto'><img style='height:100px; width: 100%; object-fit: contain'
+							src="static/images/{{job_ad['image']}}" alt="No Image Provided" /></div>
+					<div class="data">
+						<h4><a href="{{job_ad['link']}}"> {{job_ad['title']}} (Job ID: {{job_ad['id']}}) </a></h4>
+						<p> {{job_ad['content']}} </p>
+						<h6 id="company"> Company: {{job_ad['company']}} </h6>
+					</div>
+				</div>
+				{% endfor %}
+				<div class="cl">&nbsp;</div>
+			</div>
+			{% else %}
+			<h1 style="color: #1da9d7;padding-top: 9px; padding-bottom: 20px;"> No matching advertisements found. </h1>
+			{% endif %}
+		</div>
+
+		<div class="cl">&nbsp;</div>
+	</div>
+	<div class="cl">&nbsp;</div>
+</div>
+
+{% endblock %}

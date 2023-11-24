@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div id="main" style="height: auto;">
+	<div id="content" style="height: auto;">
+		<div class="box" style="height: auto">
+			<h1 id='post-new-job'>Post New Job</h1>
+			<form action="/postjobs" method="POST" id="post-jobs-form">
+				<p style="padding-top: 8px; padding-bottom: 4px;">Title *:</p>
+				<p><input type="text" name="title" id="title-input" value="{{ title }}" required /></p>
+				<p style="padding-top: 8px; padding-bottom: 4px;">Salary:</p>
+				<p><input type="number" name="salary" id="title-input" value="{{ salary }}" /></p>
+				<p style="padding-top: 8px; padding-bottom: 4px;">Company:</p>
+				<p><input type="text" name="company" id="title-input" value="{{ company }}" /></p>
+				<p style="padding-top: 8px; padding-bottom: 4px;">Description *:</p>
+				<textarea type="text" name="description" id="description-input" required>{{ description }}</textarea>
+				<p style="padding-left: 400px;"><input type="submit" value="Classify" id="classify-button"
+						name="Classify" onclick="loading()" /></p>
+				<div id="loading"></div>
+				<div id="predicted">
+					<p style="font-size: 20px; padding-top: 50px; text-align: center; color: blue;"> {{
+						predicted_message }}
+					</p>
+					{% if predicted_message %}
+					<p style="padding-top: 40px;">If the category need to be changed, you can
+						override in the dropdown below:</p>
+					<select name="categories" style="padding-top: 8px; padding-bottom: 4px; color: black">
+						{% for category in categories %}
+						<option value="{{category}}" {% if category==predicted_category %}selected="selected" {% endif
+							%}>{{category}}</option>
+						{% endfor %}
+					</select>
+					<p style="padding-left: 400px; padding-top: 33px; padding-bottom: 25px;"><input type="submit" value="Post Job" id="classify-button"
+						name="Post Job"/></p>
+					{% endif %}
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block script %}
+
+<script>
+	function loading() {
+		let title = document.forms["post-jobs-form"]["title"].value;
+		let description = document.forms["post-jobs-form"]["description"].value;
+		if (title && description) {
+			$("#loading").show();
+			$('#predicted').hide();
+		}
+	}
+</script>
+
+{% endblock %}

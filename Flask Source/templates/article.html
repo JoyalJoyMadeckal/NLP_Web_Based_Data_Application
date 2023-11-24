@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div id="main" style='height: auto'>
+	<div id="content" style='height: auto'>
+		<div class="box" style='height: auto'>
+			<div class="cl">&nbsp;</div>
+			<div class="posts">
+				<h1 id="data-title"> {{required_job_data['title']}} (Job ID: {{required_job_data['id']}}) </h1>
+				<div class="cl">&nbsp;</div>
+				<h6 id="company" style="padding-top: 0px;padding-left: 8px;">
+					Company: {{required_job_data['company']}}
+				</h6>
+				{% if required_job_data['salary']!='Not Specified' %} 
+				<h6 id="company" style="padding-top: 0px;padding-left: 8px;">
+					Salary: {{required_job_data['salary']}}
+				</h6>
+				{% endif %}
+				<div class="post-article">
+					<div class="image" id="data-img"><img style='height: 125px; width: 100%; object-fit: contain'
+							src="/static/images/{{required_job_data['image']}}" , alt="No Image Provided" /> </div>
+					<div class="data-article" id="data-content">
+						<p>
+							{{required_job_data['full_content']}}
+						</p>
+					</div>
+				</div>
+				<div class="cl">&nbsp;</div>
+			</div>
+		</div>
+		<div class="cl">&nbsp;</div>
+	</div>
+	<div class="cl">&nbsp;</div>
+</div>
+{% endblock %}

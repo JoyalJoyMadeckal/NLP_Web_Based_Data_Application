@@ -1,0 +1,65 @@
+<!DOCTYPE html">
+<html>
+
+<head>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" type="text/css" media="all" />
+  <script src="{{ url_for('static', filename='jquery-3.6.0.js') }}"></script>
+</head>
+
+<body>
+
+  <div id="shell" height=auto>
+    <div id="header">
+      <h1 class="title"><a href="/">RMIT Job Shop</a></h1>
+      <div class="top-bar">
+        <div id="post-jobs">
+          <form action="/login" method="POST">
+            <input class="submit" type="submit" name="Post Jobs" value="Post Jobs" />
+            {% if login %}
+            <input class="employer-login" style="width: 163px;" type="submit" name="Employer Logout" value="Employer Logout" />
+            {% else %}
+            <input class="employer-login" type="submit" name="Employer Login" value="Employer Login" />
+            {% endif %}
+          </form>
+        </div>
+        <div id="search">
+          <form action="/search" method="POST">
+            <label for="search-string">I'M LOOKING FOR</label>
+            <div class="fields">
+              <input type="text" placeholder="Enter Search text" name="search-string" class="field" />
+              <input type="submit" value="" class="submit" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="navigation">
+      <ul>
+        <li class="{{accounting}}"><a href="/accounting">ACCOUNTING FINANCE</a></li>
+        <li class="{{engineering}}"><a href="/engineering">ENGINEERING</a></li>
+        <li class="{{healthcare}}"><a href="/healthcare">HEALTHCARE NURSING</a></li>
+        <li class="{{hospitality}}"><a href="/hospitality">HOSPITALITY CATERING</a></li>
+        <li class="{{it}}" style="padding-top: 12px; padding-left: 40px;"><a href="/it">IT</a></li>
+        <li class="{{advertising}}" style="padding-top: 12px; padding-left: 6px;"><a href="/advertising">PR ADVERTISING MARKETING</a></li>
+        <li class="{{sales}}" style="padding-top: 12px; padding-left: 16px;"><a href="/sales">SALES</a></li>
+        <li class="{{teaching}}" style="padding-top: 12px; padding-left: 16px;"><a href="/teaching">TEACHING</a></li>
+        <li class="{{about}}" style="padding-top: 12px; padding-left: 16px;"><a href="/about">CONTACT US</a></li>
+      </ul>
+      <div class="cl">&nbsp;</div>
+    </div>
+
+    {% block body %}
+    {% endblock %}
+
+    <div id="footer" style='height:auto'>
+      <p class="lf">Copyright &copy; 2010 <a href="#">SiteName</a> - All Rights Reserved</p>
+      <p class="rf">Design by <a href="http://chocotemplates.com/">ChocoTemplates.com</a></p>
+      <div style="clear:both;"></div>
+    </div>
+  </div>
+</body>
+
+{% block script %}
+{% endblock %}
+
+</html>
